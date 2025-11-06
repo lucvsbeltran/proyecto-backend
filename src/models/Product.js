@@ -9,8 +9,7 @@ const celularSchema = mongoose.Schema(
     price: { type: Number, required: true },
     description: { type: String, required: true },
     img: { type: String, required: true },
-    qty: { type: Number, default: 0 },
-    isnew: { type: Boolean, default: false },
+    qty: { type: Number, default: 0 },  
   },
   { timestamps: true }
 );

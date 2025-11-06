@@ -8,7 +8,6 @@ exports.createCelular = async (req, res) => {
     description,
     img,
     qty = 0,
-    isnew = false,
     currency,
   } = req.body;
 
@@ -31,7 +30,7 @@ exports.createCelular = async (req, res) => {
       name,
       description,
       images: [img],
-      metadata: { qty: Number(qty), isnew: Boolean(isnew) },
+      metadata: { qty: Number(qty)},
     });
 
     const stripePrice = await stripe.prices.create({
@@ -48,7 +47,6 @@ exports.createCelular = async (req, res) => {
       description,
       img,
       qty: Number(qty),
-      isnew: Boolean(isnew),
       currency,
     });
 
@@ -99,7 +97,7 @@ exports.updateCelularById = async (req, res) => {
         price,
         description,
       },
-      { isnew: true, runValidators: true }
+      {runValidators: true}
     );
     if (!updateCelulares)
       return res.status(404).json({ message: "No se encontro el celular" });
