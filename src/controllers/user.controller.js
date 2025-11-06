@@ -57,15 +57,15 @@ exports.loginUser = async (req, res) => {
       { expiresIn: "1h" },
       (error, token) => {
         if (error) throw error;
-        const isProd = process.env.NODE_ENV === "production";
+        const isProd = process.env.NODE_ENV === "development";
         res
           .cookie("token", token, {
             httpOnly: true,
-            secure: isProd, // En producción, usar solo HTTPS
-            sameSite: isProd ? "None" : "lax", // En producción, permitir cross-site
-            maxAge: 60 * 60 * 1000, // 1 minuto
+            secure: isProd, 
+            sameSite: isProd ? "None" : "lax", 
+            maxAge: 60 * 1000, 
           })
-          .json({ message: "Login exitoso" }); // también se envía el token en el cuerpo de la respuesta
+          .json({ message: "Login exitoso" }); 
       }
     );
   } catch (error) {
@@ -131,8 +131,8 @@ exports.updateUserById = async (req, res) => {
 exports.logout = async (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "None" : "lax",
+    secure: process.env.NODE_ENV === "development",
+    sameSite: process.env.NODE_ENV === "development" ? "None" : "lax",
   });
   return res.json({ message: "Logout exitoso" });
 };
