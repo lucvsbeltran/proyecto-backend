@@ -29,6 +29,7 @@ connectDB()
 
 const allowedOrigins = [
   "http://localhost:3000",
+  "https://proyecto-7-frontend.onrender.com",
   "http://localhost:5173",
 ];
 
