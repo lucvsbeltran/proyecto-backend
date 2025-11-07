@@ -63,7 +63,7 @@ exports.loginUser = async (req, res) => {
             httpOnly: true,
             secure: isProd, 
             sameSite: isProd ? "None" : "lax", 
-            maxAge: 60 * 1000, 
+            maxAge: 10 * 60 * 1000, 
           })
           .json({ message: "Login exitoso" }); 
       }
